@@ -1,0 +1,28 @@
+{
+  "name": "housetop",
+  "version": "1.0.0",
+  "description": "A Layout Helper",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "mocha test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skiano/housetop.git"
+  },
+  "keywords": [
+    "design"
+  ],
+  "author": "Greg Skiano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skiano/housetop/issues"
+  },
+  "homepage": "https://github.com/skiano/housetop",
+  "dependencies": {
+    "lodash": "^2.4.1"
+  },
+  "devDependencies": {
+    "should": "^4.3.0"
+  }
+}
