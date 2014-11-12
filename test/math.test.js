@@ -97,21 +97,44 @@ describe('Computing Virtual Sizes', function () {
 
     var patch = math.fitPatches(patches, 'w', {x:1,g:0});
 
+    var expected = {
+      w: {x:1,g:0},
+      h: {x:1/2,g:-1},
+      patches: [
+        {
+          w: {x:1/6, g:-1/3},
+          y: {x:1/2,g:-1}
+        },
+        {
+          w: {x:1/3, g:-2/3},
+          y: {x:1/2,g:-1}
+        },
+        {
+          w: {x:1/2, g:-1},
+          y: {x:1/2,g:-1}
+        }
+      ]
+    };
+
+    console.log(patch.patches)
+    console.log('')
+    console.log(expected.patches)
+
     // patch.should.eql({
     //   w: {x:1,g:0},
-    //   h: {x:1,g:2},
-    //   children: [
+    //   h: {x:1/2,g:-1},
+    //   patches: [
     //     {
-    //       w: {x:1/3, g:2/3},
-    //       y: {x:1, g:2}
+    //       w: {x:1/6, g:-1/3},
+    //       y: {x:1/2,g:-1}
     //     },
     //     {
-    //       w: {x:1/3, g:2/3},
-    //       y: {x:1, g:2}
+    //       w: {x:1/3, g:-2/3},
+    //       y: {x:1/2,g:-1}
     //     },
     //     {
-    //       w: {x:1/3, g:2/3},
-    //       y: {x:1, g:2}
+    //       w: {x:1/2, g:-1},
+    //       y: {x:1/2,g:-1}
     //     }
     //   ]
     // });
