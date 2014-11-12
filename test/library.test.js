@@ -195,10 +195,58 @@ describe('Combining Patches', function () {
 
   it('should support prepending a patch', function () {
 
+    var childPatch = {
+      w: {x:2,g:0},
+      h: {x:2,g:0}
+    };
+
+    var currentPatch = {
+      w: childPatch.w,
+      h: childPatch.h,
+      patches: [childPatch]
+    };
+
+    var newPatch = {
+      w: {x:4,g:0},
+      h: {x:2,g:0}
+    };
+
+    var combinedPatch = $.prependPatch(currentPatch, newPatch, 'horizontal');
+
+    combinedPatch.should.eql({
+      w: {x:6,g:0},
+      h: {x:2,g:0},
+      patches: [newPatch, childPatch]
+    });
+
   });
 
   it('should support appending a patch', function () {
     
+    var childPatch = {
+      w: {x:2,g:0},
+      h: {x:2,g:0}
+    };
+
+    var currentPatch = {
+      w: childPatch.w,
+      h: childPatch.h,
+      patches: [childPatch]
+    };
+
+    var newPatch = {
+      w: {x:4,g:0},
+      h: {x:2,g:0}
+    };
+
+    var combinedPatch = $.appendPatch(currentPatch, newPatch, 'vertical');
+
+    combinedPatch.should.eql({
+      w: {x:2,g:0},
+      h: {x:4,g:0},
+      patches: [childPatch, newPatch]
+    });
+
   });
 
   it('should determine how to add patch based on the placement', function () {
