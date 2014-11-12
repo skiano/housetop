@@ -19,11 +19,6 @@ describe('Utilities', function () {
     $.crossDimension('h').should.equal('w');
   });
 
-  it('should return correct cross axis', function () {
-    $.crossAxis('x').should.equal('y');
-    $.crossAxis('y').should.equal('x');
-  });
-
   it('should scale a patch correctly', function () {
     var patch = {w:100,h:200};
     
