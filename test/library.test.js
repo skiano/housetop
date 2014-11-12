@@ -509,5 +509,17 @@ describe('Resolving Patches', function () {
 
   });
 
+  it('should be able to compute real sizes given x and g', function () {
+
+    // todo
+
+  });
+
+  it('should be able to resolve the patch', function () {
+
+    // todo
+
+  });
+
 });
 
