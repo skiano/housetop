@@ -491,8 +491,23 @@ describe('Combining Patches', function () {
 
   });
 
-  
+});
 
+describe('Resolving Patches', function () {
+
+  it('should be able to solve for x given g and one known dimension', function () {
+
+    var patch = {
+      w: {x:1, g:1},
+      h: {x:2, g:2}
+    };
+    var gutterWidth = 10;
+    var knownWidth = 110;
+    var knownHeight = 110;
+    $.solveForX(patch, knownWidth, 'w', gutterWidth).should.eql(100);
+    $.solveForX(patch, knownWidth, 'h', gutterWidth).should.eql(45);
+
+  });
 
 });
 
