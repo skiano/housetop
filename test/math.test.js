@@ -87,6 +87,14 @@ describe('Computing Virtual Sizes', function () {
     size.should.eql({x:2,g:10});
   });
 
+  it('should be able to round virtual size', function () {
+    var size = math.roundVirtualSize({
+      x:1.0000000000,
+      g:5.9999999999
+    }, 6);
+    size.should.eql({x:1,g:6});
+  });
+
   it('should handle the first patch by assuming it is 1x and 0gutter', function () {
 
     var patches = [
@@ -97,47 +105,24 @@ describe('Computing Virtual Sizes', function () {
 
     var patch = math.fitPatches(patches, 'w', {x:1,g:0});
 
-    var expected = {
+    patch.should.eql({
       w: {x:1,g:0},
-      h: {x:1/2,g:-1},
+      h: math.roundVirtualSize({x:1/2,g:-1}),
       patches: [
         {
-          w: {x:1/6, g:-1/3},
-          y: {x:1/2,g:-1}
+          w: math.roundVirtualSize({x:1/6, g:-1/3}),
+          h: math.roundVirtualSize({x:1/2,g:-1})
         },
         {
-          w: {x:1/3, g:-2/3},
-          y: {x:1/2,g:-1}
+          w: math.roundVirtualSize({x:1/3, g:-2/3}),
+          h: math.roundVirtualSize({x:1/2,g:-1})
         },
         {
-          w: {x:1/2, g:-1},
-          y: {x:1/2,g:-1}
+          w: math.roundVirtualSize({x:1/2, g:-1}),
+          h: math.roundVirtualSize({x:1/2,g:-1})
         }
       ]
-    };
-
-    console.log(patch.patches)
-    console.log('')
-    console.log(expected.patches)
-
-    // patch.should.eql({
-    //   w: {x:1,g:0},
-    //   h: {x:1/2,g:-1},
-    //   patches: [
-    //     {
-    //       w: {x:1/6, g:-1/3},
-    //       y: {x:1/2,g:-1}
-    //     },
-    //     {
-    //       w: {x:1/3, g:-2/3},
-    //       y: {x:1/2,g:-1}
-    //     },
-    //     {
-    //       w: {x:1/2, g:-1},
-    //       y: {x:1/2,g:-1}
-    //     }
-    //   ]
-    // });
+    });
 
   });
 
