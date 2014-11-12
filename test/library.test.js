@@ -6,11 +6,13 @@ describe('Utilities', function () {
 
   it('should convert dimensions to orientations correctly', function () {
     $.getOrientation('w').should.equal('horizontal');
-    $.getOrientation('top').should.equal('horizontal');
-    $.getOrientation('bottom').should.equal('horizontal');
     $.getOrientation('h').should.equal('vertical');
-    $.getOrientation('left').should.equal('vertical');
-    $.getOrientation('right').should.equal('vertical');
+    // the following feel a bit 
+    // counter intuitive, but prove more helpful this way
+    $.getOrientation('top').should.equal('vertical');
+    $.getOrientation('bottom').should.equal('vertical');
+    $.getOrientation('left').should.equal('horizontal');
+    $.getOrientation('right').should.equal('horizontal');
     (function(){
       $.getOrientation('W');
     }).should.throw(/not a valid dimension/);
@@ -162,6 +164,7 @@ describe('Combining Patches', function () {
     combinedPatch.should.eql({
       w: {x:1,g:0},
       h: {x:5,g:4},
+      orientation: 'vertical',
       patches: [newPatch, currentPatch]
     });
 
@@ -188,6 +191,7 @@ describe('Combining Patches', function () {
     combinedPatch.should.eql({
       w: {x:6,g:6},
       h: {x:3,g:3},
+      orientation: 'horizontal',
       patches: [currentPatch, newPatch]
     });
 
@@ -253,15 +257,81 @@ describe('Combining Patches', function () {
 
   });
 
-  it('should determine how to add patch based on the placement', function () {
-    
-    // var currentPatch = {
-    //   w: {x:}
-    // }
+  it('should place above a vertical patch correctly', function () {
 
-    // $.combinePatch
+    var placement = 'top';
+    var orientation = 'vertical';
+    var childPatch = {w: {x:1,g:1},h: {x:1,g:1}};
+
+    var currentPatch = {
+      w: {x:1,g:1},
+      h: {x:1,g:1},
+      orientation: orientation,
+      patches: [childPatch]
+    };
+
+    var newPatch = {w: {x:2,g:2}, h: {x:2,g:2}};
+
+    var combinedPatch = $.combinePatch(currentPatch, newPatch, placement);
+
+    combinedPatch.should.eql({
+      w: {x:1,g:1},
+      h: {x:3,g:3},
+      orientation: orientation,
+      patches: [newPatch,childPatch]
+    });
 
   });
+
+  it('should place above a horizontal patch', function () {
+
+    var placement = 'top';
+    var orientation = 'horizontal';
+    var combinedOrientation = 'vertical';
+
+    var currentPatch = {
+      w: {x:1,g:1},
+      h: {x:1,g:1},
+      orientation: orientation
+    };
+
+    var newPatch = {w: {x:2,g:2}, h: {x:2,g:2}};
+
+    var combinedPatch = $.combinePatch(currentPatch, newPatch, placement);
+
+    combinedPatch.should.eql({
+      w: {x:1,g:1},
+      h: {x:3,g:3},
+      orientation: combinedOrientation,
+      patches: [newPatch,currentPatch]
+    });
+
+  });
+
+  it('should place below a vertical patch', function () {
+
+  });
+
+  it('should place below a horizontal patch', function () {
+
+  });
+
+  it('should place to the right of a vertical patch', function () {
+
+  });
+
+  it('should place to the right of a horizontal patch', function () {
+
+  });
+
+  it('should place to the left of a vertical patch', function () {
+
+  });
+
+  it('should place to the left of a horizontal patch', function () {
+
+  });
+
 
 });
 
