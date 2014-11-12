@@ -6,7 +6,11 @@ describe('Utilities', function () {
 
   it('should convert dimensions to orientations correctly', function () {
     $.getOrientation('w').should.equal('horizontal');
+    $.getOrientation('top').should.equal('horizontal');
+    $.getOrientation('bottom').should.equal('horizontal');
     $.getOrientation('h').should.equal('vertical');
+    $.getOrientation('left').should.equal('vertical');
+    $.getOrientation('right').should.equal('vertical');
     (function(){
       $.getOrientation('W');
     }).should.throw(/not a valid dimension/);
