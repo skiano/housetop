@@ -112,7 +112,7 @@ describe('Computing Virtual Sizes', function () {
     size.should.eql({x:1,g:6});
   });
 
-  it('should handle the first patch by assuming it is 1x and 0gutter', function () {
+  it('should take basic patches and fit them to a virtual size', function () {
 
     var patches = [
       {w:20, h:60},
@@ -125,6 +125,7 @@ describe('Computing Virtual Sizes', function () {
     patch.should.eql({
       w: {x:1,g:0},
       h: $.roundVirtualSize({x:1/2,g:-1}),
+      orientation: 'horizontal',
       patches: [
         {
           w: $.roundVirtualSize({x:1/6, g:-1/3}),
