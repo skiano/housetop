@@ -142,6 +142,23 @@ describe('Computing Virtual Sizes', function () {
       ]
     });
 
+    // testing single
+    // most common initial state
+    var patches = [{w:20, h:20}];
+    var patch = $.fitPatches(patches, 'w', {x:1,g:0});
+
+    patch.should.eql({
+      w: {x:1,g:0},
+      h: {x:1,g:0},
+      orientation: 'horizontal',
+      patches: [
+        {
+          w: {x:1,g:0},
+          h: {x:1,g:0},
+        }
+      ]
+    });
+
   });
 
 });
