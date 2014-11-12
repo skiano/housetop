@@ -4,6 +4,16 @@ var math = require('../lib/math');
 
 describe('utilities', function () {
 
+  it('should support vallidating virtual sizes', function () {
+    (function(){
+      math.checkVirtualSize(1);
+    }).should.throw(/not a virtual/);
+    
+    (function(){
+      math.checkVirtualSize({x:1,g:0});
+    }).should.not.throw();
+  });
+
   it('should return correct cross dimension', function () {
     math.crossDimension('w').should.equal('h');
     math.crossDimension('h').should.equal('w');
@@ -24,6 +34,19 @@ describe('utilities', function () {
     math.scalePatch(patch, 'h', 10);
     patch.w.should.equal(5);
     patch.h.should.equal(10);
+  });
+
+  it('should normalize patches', function () {
+    var patches = math.normalizePatches([
+      {w:200,h:50},
+      {w:400,h:100},
+      {w:4,h:1}
+    ],'w');
+    patches.should.eql([
+      {w:1,h:1/4},
+      {w:1,h:1/4},
+      {w:1,h:1/4}
+    ]);
   });
 
 });
