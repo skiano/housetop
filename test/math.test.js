@@ -43,10 +43,20 @@ describe('utilities', function () {
       {w:4,h:1}
     ],'w');
     patches.should.eql([
-      {w:1,h:1/4},
-      {w:1,h:1/4},
-      {w:1,h:1/4}
+      {w:100,h:25},
+      {w:100,h:25},
+      {w:100,h:25}
     ]);
+  });
+
+  it('should sum patch width across a dimension', function () {
+    var patches = [
+      {w:200,h:50},
+      {w:400,h:100}
+    ];
+
+    math.sumPatches(patches, 'w').should.equal(600);
+    math.sumPatches(patches, 'h').should.equal(150);
   });
 
 });
