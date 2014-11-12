@@ -12,6 +12,14 @@ describe('Utilities', function () {
     }).should.throw(/not a valid dimension/);
   });
 
+  it('should convert dimensions to orientations to dimensions correctly', function () {
+    $.getDimension('horizontal').should.equal('w');
+    $.getDimension('vertical').should.equal('h');
+    (function(){
+      $.getDimension('other');
+    }).should.throw(/not a valid orientation/);
+  });
+
   it('should support vallidating virtual sizes', function () {
     (function(){
       $.checkVirtualSize(1);
@@ -130,3 +138,34 @@ describe('Computing Virtual Sizes', function () {
   });
 
 });
+
+describe('Combining Patches', function () {
+  
+  it('should support adding a patch before', function () {
+
+  });
+
+  it('should support adding a patch after', function () {
+
+  });
+
+  it('should support prepending a patch', function () {
+
+  });
+
+  it('should support appending a patch', function () {
+    
+  });
+
+  it('should determine how to add patch based on the placement', function () {
+    
+    // var currentPatch = {
+    //   w: {x:}
+    // }
+
+    // $.combinePatch
+
+  });
+
+});
+
