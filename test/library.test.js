@@ -4,6 +4,14 @@ var $ = require('../lib/library');
 
 describe('Utilities', function () {
 
+  it('should convert dimensions to orientations correctly', function () {
+    $.getOrientation('w').should.equal('horizontal');
+    $.getOrientation('h').should.equal('vertical');
+    (function(){
+      $.getOrientation('W');
+    }).should.throw(/not a valid dimension/);
+  });
+
   it('should support vallidating virtual sizes', function () {
     (function(){
       $.checkVirtualSize(1);
