@@ -169,6 +169,28 @@ describe('Combining Patches', function () {
 
   it('should support adding a patch after', function () {
 
+    var currentPatch = {
+      w: {x:2,g:2},
+      h: {x:3,g:3}
+    };
+
+    var newPatch = {
+      w: {x:4,g:4},
+      h: {x:3,g:3}
+    };
+
+    var combinedPatch = $.addPatchAfter(currentPatch, newPatch, 'horizontal');
+
+    combinedPatch.should.eql({
+      w: {x:6,g:6},
+      h: {x:3,g:3},
+      patches: [currentPatch, newPatch]
+    });
+
+    // make sure this is not a deep equal
+    combinedPatch.h.should.not.equal(currentPatch.h);
+    combinedPatch.w.should.not.equal(currentPatch.w);
+
   });
 
   it('should support prepending a patch', function () {
