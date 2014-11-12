@@ -4,14 +4,26 @@ var math = require('../lib/math');
 
 describe('utilities', function () {
 
-  it('should return the cross dimension', function () {
+  it('should return correct cross dimension', function () {
     math.crossDimension('w').should.equal('h');
     math.crossDimension('h').should.equal('w');
   });
 
-  it('should return the cross axis', function () {
+  it('should return correct cross axis', function () {
     math.crossAxis('x').should.equal('y');
     math.crossAxis('y').should.equal('x');
+  });
+
+  it('should scale a patch correctly', function () {
+    var patch = {w:100,h:200};
+    
+    math.scalePatch(patch, 'w', 200);
+    patch.w.should.equal(200);
+    patch.h.should.equal(400);
+
+    math.scalePatch(patch, 'h', 10);
+    patch.w.should.equal(5);
+    patch.h.should.equal(10);
   });
 
 });
