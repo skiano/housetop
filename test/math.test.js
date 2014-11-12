@@ -2,7 +2,7 @@
 var should = require('should');
 var math = require('../lib/math');
 
-describe('utilities', function () {
+describe('Utilities', function () {
 
   it('should support vallidating virtual sizes', function () {
     (function(){
@@ -61,17 +61,41 @@ describe('utilities', function () {
 
 });
 
-describe('Computing Sizes', function () {
+describe('Computing Virtual Sizes', function () {
+
+  it('should suport subtracting virtual sizes', function () {
+    var size = math.subtract({x:1,g:5},{x:1,g:2});
+    size.should.eql({x:0,g:3});
+  });
+
+  it('should suport adding virtual sizes', function () {
+    var size = math.add({x:1,g:5},{x:1,g:2});
+    size.should.eql({x:2,g:7});
+  });
+
+  it('should suport totaling an array of virtual sizes', function () {
+    var size = math.sumSizes([
+      {x:1,g:5},
+      {x:1,g:2},
+      {x:3,g:1}
+    ]);
+    size.should.eql({x:5,g:8});
+  });
+
+  it('should suport multiplying virtual sizes by integers', function () {
+    var size = math.multiply({x:1,g:5},2);
+    size.should.eql({x:2,g:10});
+  });
 
   it('should handle the first patch by assuming it is 1x and 0gutter', function () {
 
     var patches = [
-      {w:100, h:300},
-      {w:100, h:300},
-      {w:100, h:300}
+      {w:20, h:60},
+      {w:40, h:60},
+      {w:60, h:60}
     ];
 
-    // var patch = math.fitGroup(patches, 'W', {x:1,g:0});
+    var patch = math.fitPatches(patches, 'w', {x:1,g:0});
 
     // patch.should.eql({
     //   w: {x:1,g:0},
