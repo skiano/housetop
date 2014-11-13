@@ -530,7 +530,6 @@ describe('Resolving Patches', function () {
       gutter: 10, w: 310, h: 200,
       patches: [
         {
-          orientation: 'vertical',
           gutter: 10, w: 100, h: 200
         },
         {
@@ -538,11 +537,9 @@ describe('Resolving Patches', function () {
           gutter: 10, w: 200, h: 200,
           patches: [
             {
-              orientation: 'vertical',
               gutter: 10, w: 200, h: 90
             },
             {
-              orientation: 'vertical',
               gutter: 10, w: 200, h: 100
             }
           ]
@@ -559,11 +556,9 @@ describe('Resolving Patches', function () {
       gutter: 10, w: 310, h: 200,
       patches: [
         {
-          orientation: 'vertical',
           gutter: 10, w: 100, h: 200
         },
         {
-          orientation: 'vertical',
           gutter: 10, w: 200, h: 220
         }
       ]
@@ -578,11 +573,9 @@ describe('Resolving Patches', function () {
       gutter: 10, w: 310, h: 200,
       patches: [
         {
-          orientation: 'vertical',
           gutter: 10, w: 98, h: 200
         },
         {
-          orientation: 'vertical',
           gutter: 10, w: 200, h: 200
         }
       ]
@@ -601,13 +594,11 @@ describe('Resolving Patches', function () {
           gutter: 10, w: 100, h: 200,
           patches: [
             {
-              orientation: 'horizontal',
               gutter: 10, w: 100, h: 210
             }
           ]
         },
         {
-          orientation: 'vertical',
           gutter: 10, w: 200, h: 200
         }
       ]
