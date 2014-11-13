@@ -614,7 +614,52 @@ describe('Resolving Patches', function () {
     (function(){
       $.vallidatePatch(patch);
     }).should.throw(/Invalid Patch/);
-    
+
+  });
+
+  it('should be able to return a bool for vallidity', function () {
+
+    var patch = {
+      orientation: 'horizontal',
+      gutter: 10, w: 310, h: 200,
+      patches: [
+        {
+          gutter: 10, w: 100, h: 200
+        },
+        {
+          orientation: 'vertical',
+          gutter: 10, w: 200, h: 200,
+          patches: [
+            {
+              gutter: 10, w: 200, h: 90
+            },
+            {
+              gutter: 10, w: 200, h: 100
+            }
+          ]
+        }
+      ]
+    };
+
+    $.isValidPatch(patch).should.equal(true);
+
+    // disagreeing child heights
+
+    var patch = {
+      orientation: 'horizontal',
+      gutter: 10, w: 310, h: 200,
+      patches: [
+        {
+          gutter: 10, w: 100, h: 200
+        },
+        {
+          gutter: 10, w: 200, h: 220
+        }
+      ]
+    };
+
+    $.isValidPatch(patch).should.equal(false);
+
 
   });
 
