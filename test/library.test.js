@@ -5,7 +5,6 @@ var $ = require('../lib/library');
 describe('Utilities', function () {
 
   it('should be able to vallidate placements', function () {
-    
     (function(){
       $.vallidatePlacement('Top');
     }).should.throw(/not a valid placement/);
@@ -13,7 +12,6 @@ describe('Utilities', function () {
     (function(){
       $.vallidatePlacement('top');
     }).should.not.throw();
-
   });
 
   it('should convert dimensions to orientations correctly', function () {
@@ -86,6 +84,39 @@ describe('Utilities', function () {
 
     $.sumPatches(patches, 'w').should.equal(600);
     $.sumPatches(patches, 'h').should.equal(150);
+  });
+
+  it('should parse patches option', function () {
+    
+    var material = ['a','b','c'];
+
+    var patches = $.parsePatchArg(1, material);
+
+    patches.should.eql(['a']);
+    material.should.eql(['b','c']);
+
+    var patches = $.parsePatchArg(2, material);
+
+    patches.should.eql(['b','c']);
+    material.should.eql([]);
+
+    // if there is not enough
+    material = [1,2];
+
+    var patches = $.parsePatchArg(4, material);
+
+    patches.should.eql([1,2]);
+    material.should.eql([]);
+
+    // if array is passed
+    var patches = $.parsePatchArg([{},{}], material);
+    patches.should.eql([{},{}]);
+
+    // if object is passed
+    var patches = $.parsePatchArg({}, material);
+    patches.should.eql([{}]);
+
+
   });
 
 });
