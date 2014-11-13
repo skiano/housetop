@@ -518,6 +518,7 @@ describe('Resolving Patches', function () {
   it('should be able to resolve the patch', function () {
 
     // todo
+    // root children should not have patches = []
 
   });
 
@@ -547,7 +548,9 @@ describe('Resolving Patches', function () {
       ]
     };
 
-    $.vallidatePatch(patch).should.be.ok;
+    (function(){
+      $.vallidatePatch(patch);
+    }).should.not.throw();
 
     // disagreeing child heights
 
@@ -564,7 +567,9 @@ describe('Resolving Patches', function () {
       ]
     };
 
-    $.vallidatePatch(patch).should.not.be.ok;
+    (function(){
+      $.vallidatePatch(patch);
+    }).should.throw(/Invalid Patch/);
 
     // widths do not add up
 
@@ -581,7 +586,9 @@ describe('Resolving Patches', function () {
       ]
     };
 
-    $.vallidatePatch(patch).should.not.be.ok;
+    (function(){
+      $.vallidatePatch(patch);
+    }).should.throw(/Invalid Patch/);
 
     // deeper problem
 
@@ -604,7 +611,10 @@ describe('Resolving Patches', function () {
       ]
     };
 
-    $.vallidatePatch(patch).should.not.be.ok;
+    (function(){
+      $.vallidatePatch(patch);
+    }).should.throw(/Invalid Patch/);
+    
 
   });
 
