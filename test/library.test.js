@@ -4,6 +4,18 @@ var $ = require('../lib/library');
 
 describe('Utilities', function () {
 
+  it('should be able to vallidate placements', function () {
+    
+    (function(){
+      $.vallidatePlacement('Top');
+    }).should.throw(/not a valid placement/);
+    
+    (function(){
+      $.vallidatePlacement('top');
+    }).should.not.throw();
+
+  });
+
   it('should convert dimensions to orientations correctly', function () {
     $.getOrientation('w').should.equal('horizontal');
     $.getOrientation('h').should.equal('vertical');
