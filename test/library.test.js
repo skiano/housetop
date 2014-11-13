@@ -660,7 +660,6 @@ describe('Resolving Patches', function () {
 
     $.isValidPatch(patch).should.equal(false);
 
-
   });
 
 });
