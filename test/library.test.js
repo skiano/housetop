@@ -558,6 +558,10 @@ describe('Resolving Patches', function () {
 
   });
 
+  it('should compare certain values after rounding them', function () {
+    $.weakCompare(1.2,1.3).should.be.ok;
+  });
+
   it('should be able to vallidate a resolved patch', function () {
 
     // correct
