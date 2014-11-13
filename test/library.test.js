@@ -519,6 +519,42 @@ describe('Resolving Patches', function () {
 
     // todo
     // root children should not have patches = []
+    var patch = {
+      orientation: 'horizontal',
+      w: {x:2,g:1},
+      h: {x:1,g:0},
+      patches: [
+        {
+          w: {x:1,g:0},
+          h: {x:1,g:0}
+        },
+        {
+          w: {x:1,g:0},
+          h: {x:1,g:0}
+        }
+      ]
+    }
+
+    var resolvedPatch = $.resolvePatch(patch, 100, 10);
+
+    resolvedPatch.should.eql({
+      orientation: 'horizontal',
+      gutter: 10, 
+      w: 210, 
+      h: 100,
+      patches: [
+        {
+          gutter: 10, 
+          w: 100, 
+          h: 100
+        },
+        {
+          gutter: 10, 
+          w: 100, 
+          h: 100
+        }
+      ]
+    });
 
   });
 
