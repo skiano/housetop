@@ -283,7 +283,7 @@ describe('Combining Patches', function () {
     var combinedPatch = $.prependPatch(currentPatch, newPatch, 'horizontal');
 
     combinedPatch.should.eql({
-      w: {x:6,g:0},
+      w: {x:6,g:1}, // plus gutter
       h: {x:2,g:0},
       patches: [newPatch, childPatch]
     });
@@ -312,7 +312,7 @@ describe('Combining Patches', function () {
 
     combinedPatch.should.eql({
       w: {x:2,g:0},
-      h: {x:4,g:0},
+      h: {x:4,g:1}, // plus gutter
       patches: [childPatch, newPatch]
     });
 
@@ -342,7 +342,7 @@ describe('Combining Patches', function () {
 
     combinedPatch.should.eql({
       w: {x:1,g:1},
-      h: {x:3,g:3},
+      h: {x:3,g:4}, // plus gutter
       orientation: orientation,
       patches: [newPatch,childPatch]
     });
@@ -368,7 +368,7 @@ describe('Combining Patches', function () {
 
     combinedPatch.should.eql({
       w: {x:1,g:1},
-      h: {x:3,g:3},
+      h: {x:3,g:4}, // plus gutter
       orientation: orientation,
       patches: [childPatch, newPatch]
     });
@@ -393,7 +393,7 @@ describe('Combining Patches', function () {
     var combinedPatch = $.combinePatch(currentPatch, newPatch, placement);
 
     combinedPatch.should.eql({
-      w: {x:3,g:3},
+      w: {x:3,g:4}, // plus gutter
       h: {x:1,g:1},
       orientation: orientation,
       patches: [childPatch, newPatch]
@@ -419,7 +419,7 @@ describe('Combining Patches', function () {
     var combinedPatch = $.combinePatch(currentPatch, newPatch, placement);
 
     combinedPatch.should.eql({
-      w: {x:3,g:3},
+      w: {x:3,g:4}, // pus gutter
       h: {x:1,g:1},
       orientation: orientation,
       patches: [newPatch, childPatch]
