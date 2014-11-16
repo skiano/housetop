@@ -54,6 +54,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.registerTask('build', ['clean','lodash', 'browserify']);
+  grunt.registerTask('build', ['clean', 'lodash', 'browserify']);
 
 };

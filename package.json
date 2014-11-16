@@ -4,8 +4,7 @@
   "description": "A Layout Helper",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha test/",
-    "postinstall": "grunt build"
+    "test": "mocha test/"
   },
   "repository": {
     "type": "git",
