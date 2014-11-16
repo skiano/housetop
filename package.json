@@ -20,10 +20,11 @@
     "url": "https://github.com/skiano/housetop/issues"
   },
   "homepage": "https://github.com/skiano/housetop",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.5",
+    "grunt-browserify": "^3.2.0",
+    "grunt-contrib-clean": "^0.6.0",
     "grunt-lodash": "^0.3.0",
     "lodash-cli": "^2.4.2",
     "should": "^4.3.0"
