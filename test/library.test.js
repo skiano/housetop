@@ -584,18 +584,19 @@ describe('Resolving Patches', function () {
     var resolvedPatch = $.resolvePatch(patch, 100, 10);
 
     resolvedPatch.should.eql({
-      w: 210,
-      h: 100,
+      width: 210,
+      height: 100,
+      gutter: 10,
       patches: [
         {
-          w: 100, 
-          h: 100,
+          width: 100, 
+          height: 100,
           x: 0,
           y: 0
         },
         {
-          w: 100, 
-          h: 100,
+          width: 100, 
+          height: 100,
           x: 110,
           y: 0
         }
@@ -623,8 +624,9 @@ describe('Resolving Patches', function () {
     }
 
     var expected = {
-      w: 210,
-      h: 100,
+      width: 210,
+      height: 100,
+      gutter: 10,
       patches: [
         {
           x: 0,
