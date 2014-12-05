@@ -604,6 +604,48 @@ describe('Resolving Patches', function () {
 
   });
 
+  it('should be able to resolve the patch using a custom render function', function () {
+
+    var patch = {
+      orientation: 'horizontal',
+      w: {x:2,g:1},
+      h: {x:1,g:0},
+      patches: [
+        {
+          w: {x:1,g:0},
+          h: {x:1,g:0}
+        },
+        {
+          w: {x:1,g:0},
+          h: {x:1,g:0}
+        }
+      ]
+    }
+
+    var expected = {
+      w: 210,
+      h: 100,
+      patches: [
+        {
+          x: 0,
+          y: 0
+        },
+        {
+          x: 110,
+          y: 0
+        }
+      ]
+    };
+
+    function render (patch) {
+      return {x: patch.x, y: patch.y};
+    }
+
+    var resolvedPatchA = $.resolvePatch(patch, 100, 10, render);
+    resolvedPatchA.should.eql(expected);
+
+  });
+
   
 });
 
