@@ -560,8 +560,6 @@ describe('Resolving Patches', function () {
 
   it('should be able to resolve the patch', function () {
 
-    // todo
-    // root children should not have patches = []
     var patch = {
       orientation: 'horizontal',
       w: {x:2,g:1},
@@ -580,170 +578,23 @@ describe('Resolving Patches', function () {
 
     var resolvedPatch = $.resolvePatch(patch, 100, 10);
 
-    resolvedPatch.should.eql({
-      orientation: 'horizontal',
-      gutter: 10, 
-      w: 210, 
-      h: 100,
-      patches: [
-        {
-          gutter: 10, 
-          w: 100, 
-          h: 100
-        },
-        {
-          gutter: 10, 
-          w: 100, 
-          h: 100
-        }
-      ]
-    });
+    resolvedPatch.should.eql([
+      {
+        w: 100, 
+        h: 100,
+        x: 0,
+        y: 0
+      },
+      {
+        w: 100, 
+        h: 100,
+        x: 110,
+        y: 0
+      }
+    ]);
 
   });
 
-  it('should compare certain values after rounding them', function () {
-    $.weakCompare(1.2,1.3).should.be.ok;
-  });
-
-  it('should be able to vallidate a resolved patch', function () {
-
-    // correct
-
-    var patch = {
-      orientation: 'horizontal',
-      gutter: 10, w: 310, h: 200,
-      patches: [
-        {
-          gutter: 10, w: 100, h: 200
-        },
-        {
-          orientation: 'vertical',
-          gutter: 10, w: 200, h: 200,
-          patches: [
-            {
-              gutter: 10, w: 200, h: 90
-            },
-            {
-              gutter: 10, w: 200, h: 100
-            }
-          ]
-        }
-      ]
-    };
-
-    (function(){
-      $.vallidatePatch(patch);
-    }).should.not.throw();
-
-    // disagreeing child heights
-
-    var patch = {
-      orientation: 'horizontal',
-      gutter: 10, w: 310, h: 200,
-      patches: [
-        {
-          gutter: 10, w: 100, h: 200
-        },
-        {
-          gutter: 10, w: 200, h: 220
-        }
-      ]
-    };
-
-    (function(){
-      $.vallidatePatch(patch);
-    }).should.throw(/Invalid Patch/);
-
-    // widths do not add up
-
-    var patch = {
-      orientation: 'horizontal',
-      gutter: 10, w: 310, h: 200,
-      patches: [
-        {
-          gutter: 10, w: 98, h: 200
-        },
-        {
-          gutter: 10, w: 200, h: 200
-        }
-      ]
-    };
-
-    (function(){
-      $.vallidatePatch(patch);
-    }).should.throw(/Invalid Patch/);
-
-    // deeper problem
-
-    var patch = {
-      orientation: 'horizontal',
-      gutter: 10, w: 310, h: 200,
-      patches: [
-        {
-          orientation: 'vertical',
-          gutter: 10, w: 100, h: 200,
-          patches: [
-            {
-              gutter: 10, w: 100, h: 210
-            }
-          ]
-        },
-        {
-          gutter: 10, w: 200, h: 200
-        }
-      ]
-    };
-
-    (function(){
-      $.vallidatePatch(patch);
-    }).should.throw(/Invalid Patch/);
-
-  });
-
-  it('should be able to return a bool for vallidity', function () {
-
-    var patch = {
-      orientation: 'horizontal',
-      gutter: 10, w: 310, h: 200,
-      patches: [
-        {
-          gutter: 10, w: 100, h: 200
-        },
-        {
-          orientation: 'vertical',
-          gutter: 10, w: 200, h: 200,
-          patches: [
-            {
-              gutter: 10, w: 200, h: 90
-            },
-            {
-              gutter: 10, w: 200, h: 100
-            }
-          ]
-        }
-      ]
-    };
-
-    $.isValidPatch(patch).should.equal(true);
-
-    // disagreeing child heights
-
-    var patch = {
-      orientation: 'horizontal',
-      gutter: 10, w: 310, h: 200,
-      patches: [
-        {
-          gutter: 10, w: 100, h: 200
-        },
-        {
-          gutter: 10, w: 200, h: 220
-        }
-      ]
-    };
-
-    $.isValidPatch(patch).should.equal(false);
-
-  });
-
+  
 });
 
