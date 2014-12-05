@@ -30,6 +30,7 @@ var patches = house1.render(1030, 10);
 console.log('----------')
 console.log(patches)
 
+
 // prettyPrint();
 
 // // ----------------------------------------------------

@@ -583,20 +583,24 @@ describe('Resolving Patches', function () {
 
     var resolvedPatch = $.resolvePatch(patch, 100, 10);
 
-    resolvedPatch.should.eql([
-      {
-        w: 100, 
-        h: 100,
-        x: 0,
-        y: 0
-      },
-      {
-        w: 100, 
-        h: 100,
-        x: 110,
-        y: 0
-      }
-    ]);
+    resolvedPatch.should.eql({
+      w: 210,
+      h: 100,
+      patches: [
+        {
+          w: 100, 
+          h: 100,
+          x: 0,
+          y: 0
+        },
+        {
+          w: 100, 
+          h: 100,
+          x: 110,
+          y: 0
+        }
+      ]
+    });
 
   });
 
