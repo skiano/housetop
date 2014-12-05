@@ -30,6 +30,13 @@ var patches = house1.render(1030, 10);
 console.log('----------')
 console.log(patches)
 
+var patches = house1.render(1030, 10, function render (patch) {
+  return {a: patch.x}
+});
+
+console.log('----------')
+console.log(patches)
+
 
 // prettyPrint();
 
