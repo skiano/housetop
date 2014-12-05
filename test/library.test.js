@@ -538,6 +538,11 @@ describe('Combining Patches', function () {
 
 describe('Resolving Patches', function () {
 
+  /*
+   * TODO: enhance test coverage for 
+   * orientations and more complicated nesting
+   */
+
   it('should be able to solve for x given g and one known dimension', function () {
 
     var patch = {
